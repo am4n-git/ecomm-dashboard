@@ -1,6 +1,12 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
+import Header from './Header'
 function Register() {
+    useEffect(()=>{
+        if(localStorage.getItem('user-info')){
+            history.push('./add')
+        }
+    })
     const [name,setName]= useState("")
     const[password, setPassword]= useState("")
     const[email,setEmail]= useState("");
@@ -19,9 +25,11 @@ function Register() {
         console.warn("result>>>",result)
         localStorage.setItem("user-info", JSON.stringify(result));
         history.push("/add")
-        
+
     }
     return (
+        <>
+        <Header />
         <div className="col-sm-6 offset-sm-3">
             <h1>Sign Up</h1>
             <input type="text" value={name} placeholder="Name" className="form-control" onChange={(e)=>setName(e.target.value)}/>
@@ -32,6 +40,7 @@ function Register() {
             <br />
             <button className="btn btn-primary" onClick={signUp}>Sign Up</button>
         </div>
+        </>
     )
 }
 

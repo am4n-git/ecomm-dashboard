@@ -7,13 +7,20 @@ function Header() {
         <div>
             <Navbar bg="dark" variant="dark" sticky="top">
                 <Container>
-                <Navbar.Brand><Link to="/home">Home</Link></Navbar.Brand>
+                <Navbar.Brand><Link to="#home">Home</Link></Navbar.Brand>
                 <Nav className="me-auto navbar-wrapper">
-                    <Link to="/add">Add Prdouct</Link>
-                    <Link to="/update">Upadte Product</Link>
-                    <Link to="/login">Login</Link>
-                    <Link to="/register">Register</Link>
-
+                    {
+                        localStorage.getItem('user-info') ?
+                        <>
+                        <Link to="/add">Add Prdouct</Link>
+                        <Link to="/update">Upadte Product</Link>
+                        </>
+                        :
+                        <>
+                            <Link to="/login">Login</Link>
+                            <Link to="/register">Register</Link>
+                        </>
+                    }
                 </Nav>
                 </Container>
             </Navbar>
